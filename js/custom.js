@@ -3,6 +3,9 @@ let rst_btn = document.querySelector("#rstbtn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
+let popUp = document.getElementById("popUp");
+let popUpMsg = document.getElementById("popUpMsg");
+
 
 let turno = true;
 const winningpaterns = [
@@ -16,7 +19,7 @@ const winningpaterns = [
     [6, 7, 8]
 ];
 
-const resetGame = () =>{
+const resetGame = () => {
     turno = true;
     einabledBoxes();
     msgContainer.classList.add("hide");
@@ -37,35 +40,33 @@ boxeces.forEach((box) => {
         box.disabled = true;
 
         checkWinner();
-        checkDraw();
+        showDraw();
     });
 });
 
-const disabledBoxes = () =>{
-    for(let box of boxeces){
+const disabledBoxes = () => {
+    for (let box of boxeces) {
         box.disabled = true;
     }
 }
 
-const einabledBoxes = () =>{
-    for(let box of boxeces){
+const einabledBoxes = () => {
+    for (let box of boxeces) {
         box.disabled = false;
         box.innerText = "";
     }
 }
+const showWinner = (winner) => {
+    const message = `Congratulations, Winner is ${winner}`;
+    showPopUp(message);
+};
 
+// const showWinner = (winner) => {
+//     msg.innerText = `Congratulations, Winner is ${winner}`;
+//     msgContainer.classList.remove("hide");
+//     disabledBoxes();
+// }
 
-const showWinner = (winner) =>{
-    msg.innerText = `Congratulations, Winner is ${winner}`;
-    msgContainer.classList.remove("hide");
-    disabledBoxes();
-}
-
-const showDraw = () =>{
-    msg.innerText = "Game is Draw ! Try Again";
-    msgContainer.classList.remove("hide");
-    einabledBoxes();
-}
 
 const checkWinner = () => {
     for (let pattern of winningpaterns) {
@@ -75,7 +76,7 @@ const checkWinner = () => {
 
         if (pos1Val != "" && pos2Val != "" && pos3Val != "") {
             if (pos1Val === pos2Val && pos2Val === pos3Val) {
-                console.log("Winner", pos1Val);
+                // console.log("Winner", pos1Val);
                 showWinner(pos1Val);
             }
         }
@@ -83,22 +84,17 @@ const checkWinner = () => {
     }
 };
 
-// const checkDraw  = () =>{
-//     for(let pattern of winningpaterns) {
-//         let draw1Val = boxeces[pattern[0]].innerText;
-//         let draw2Val = boxeces[pattern[1]].innerText;
-//         let draw3Val = boxeces[pattern[2]].innerText;
 
-//         if(draw1Val != "" && draw2Val != "" && draw3Val !=""){
-//             if(draw1Val != draw2Val && draw2Val != draw3Val){
-//                 console.log("Draw");
-//                 showDraw();
-//             }
-//         }
-//     }
-// };
+function closePopUp() {
+    popUp.style.display = "none";
+}
 
-const checkDraw = () => {
+const showPopUp = (message) => {
+    popUpMsg.innerText = message;
+    popUp.style.display = "block";
+};
+
+const showDraw = () => {
     // Check if all boxes are filled
     const allBoxesFilled = Array.from(boxeces).every(box => box.innerText !== "");
 
@@ -117,7 +113,7 @@ const checkDraw = () => {
 
         // If no winning pattern matches, declare a draw
         // console.log("Draw");
-        showDraw();
+        showPopUp("Game is Draw! Try Again");
     }
 };
 

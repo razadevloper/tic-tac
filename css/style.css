@@ -1,20 +1,23 @@
-*{
- padding: 0;
- margin: 0;
- box-sizing: border-box;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-h1{
+
+h1 {
     text-align: center;
     color: #7455c4;
     padding-top: 2rem;
 }
-.container{
+
+.container {
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.game{
+
+.game {
     height: 60vmin;
     width: 60vmin;
     display: flex;
@@ -23,7 +26,8 @@ h1{
     justify-content: center;
     align-items: center;
 }
-.box{
+
+.box {
     height: 18vmin;
     width: 18vmin;
     border-radius: 1rem;
@@ -34,10 +38,12 @@ h1{
     background-color: #fff;
     cursor: pointer;
 }
-.resetbtn{
+
+.resetbtn {
     text-align: center;
 }
-#rstbtn{
+
+#rstbtn {
     text-align: center;
     padding: 7px 32px;
     font-size: 1.2rem;
@@ -47,6 +53,7 @@ h1{
     border: none;
     cursor: pointer;
 }
+
 .msg-container {
     /* text-align: center; */
     height: 100vmin;
@@ -57,11 +64,12 @@ h1{
     align-items: center;
     gap: 50px;
 }
-#msg{
+
+#msg {
     font-size: 5vmin;
 }
 
-#new-btn{
+#new-btn {
     text-align: center;
     padding: 7px 20px;
     font-size: 1.2rem;
@@ -69,14 +77,34 @@ h1{
     color: #fff;
     border-radius: 1rem;
     border: none;
-    cursor: pointer; 
+    cursor: pointer;
 }
-.hide{
+
+.hide {
     display: none;
 }
 
-@media (max-width: 320px){
-    .container{
+@media (max-width: 320px) {
+    .container {
         height: 55vh;
     }
+}
+
+.pop-up {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    background-color: #7455c496;
+    border: 2px solid #7455c4;
+    z-index: 1000;
+    border-radius: 12px;
+}
+
+#popUpMsg {
+    margin-bottom: 7vh;
+    font-size: 4vh;
+    color: #fff;
 }
